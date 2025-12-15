@@ -1,1 +1,1 @@
-# testmedictg.github.io
+# testmedictg.com
