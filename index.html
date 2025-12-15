@@ -1,0 +1,3624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TestMediCTG - Diagnostic Test Prices in Chittagong</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+      :root {
+    --medical-white: #ffffff;
+    --hospital-blue: #1a73e8;
+    --soft-green: #34a853;
+    --light-blue: #e8f0fe;
+    --light-green: #e6f4ea;
+    --text-dark: #202124;
+    --text-gray: #5f6368;
+    --border-light: #dadce0;
+    --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    font-size: 14px;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-dark);
+    background-color: #f8f9fa;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+/* Header Styles */
+header {
+    background-color: var(--medical-white);
+    box-shadow: var(--shadow-light);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    min-height: 60px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.logo-icon img.logo-img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.logo-text {
+    font-size: 25px;
+    font-weight: 700;
+    color: var(--hospital-blue);
+    white-space: nowrap;
+}
+
+.logo-text span {
+    color: var(--soft-green);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    transition: color 0.3s;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 4px 0;
+    white-space: nowrap;
+}
+
+nav a:hover, nav a.active {
+    color: var(--hospital-blue);
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--text-dark);
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Mobile Navigation Styles */
+.mobile-nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.mobile-nav-overlay.active {
+    display: block;
+}
+
+/* Page Styles */
+.page {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, var(--light-blue), var(--light-green));
+    padding: 40px 0;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+    color: var(--text-dark);
+    line-height: 1.3;
+    padding: 0 10px;
+}
+
+.hero p {
+    font-size: 1rem;
+    color: var(--text-gray);
+    max-width: 100%;
+    margin: 0 auto 30px;
+    padding: 0 15px;
+}
+
+.search-container {
+    max-width: 100%;
+    margin: 0 auto;
+    position: relative;
+    padding: 0 16px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 14px 50px 14px 20px;
+    border-radius: 50px;
+    border: 1px solid var(--border-light);
+    font-size: 16px;
+    box-shadow: var(--shadow-light);
+    transition: box-shadow 0.3s;
+}
+
+.search-input:focus {
+    outline: none;
+    box-shadow: var(--shadow-medium);
+    border-color: var(--hospital-blue);
+}
+
+.search-btn {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--hospital-blue);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    min-width: 80px;
+}
+
+.search-btn:hover {
+    background-color: #0d5bb9;
+}
+
+/* Quick Actions */
+.quick-actions {
+    padding: 40px 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    padding: 0 16px;
+}
+
+.action-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    padding: 0 16px;
+}
+
+.action-card {
+    background-color: var(--medical-white);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: var(--shadow-light);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    min-height: 180px;
+}
+
+.action-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
+}
+
+.action-icon {
+    font-size: 32px;
+    color: var(--hospital-blue);
+    margin-bottom: 15px;
+}
+
+.action-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.action-card p {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Test Cards */
+.test-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 16px;
+}
+
+.test-card {
+    background-color: var(--medical-white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-light);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.test-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
+}
+
+.test-card-header {
+    padding: 16px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.test-card-header h3 {
+    margin-bottom: 4px;
+    font-size: 1.1rem;
+}
+
+.test-card-body {
+    padding: 16px;
+}
+
+.test-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.test-price {
+    font-weight: 600;
+    color: var(--hospital-blue);
+    font-size: 1.1rem;
+}
+
+.test-report-time {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+}
+
+.test-labs {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+}
+
+.test-card-footer {
+    padding: 12px 16px;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.view-details {
+    color: var(--hospital-blue);
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+}
+
+.last-updated {
+    font-size: 0.75rem;
+    color: var(--text-gray);
+}
+
+/* Center Cards */
+.center-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 16px;
+}
+
+.center-card {
+    background-color: var(--medical-white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-light);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.center-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
+}
+
+.center-card-header {
+    padding: 16px;
+    background-color: var(--light-blue);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.center-icon {
+    width: 40px;
+    height: 40px;
+    background-color: var(--hospital-blue);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.center-card-header h3 {
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.center-card-body {
+    padding: 16px;
+}
+
+.center-info {
+    margin-bottom: 15px;
+}
+
+.center-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 8px;
+    color: var(--text-gray);
+    font-size: 0.9rem;
+}
+
+.center-info-item i {
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.center-tests {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+}
+
+.center-card-footer {
+    padding: 12px 16px;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* Page Content Styles */
+.page-content {
+    padding: 30px 0;
+    min-height: 60vh;
+}
+
+.page-header {
+    margin-bottom: 30px;
+    text-align: center;
+    padding: 0 16px;
+}
+
+.page-header h1 {
+    font-size: 1.8rem;
+    color: var(--hospital-blue);
+    line-height: 1.3;
+}
+
+.page-header p {
+    color: var(--text-gray);
+    max-width: 100%;
+    margin: 0 auto;
+    font-size: 1rem;
+}
+
+/* Filters */
+.filters {
+    background-color: var(--medical-white);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+    margin: 20px 16px 30px;
+}
+
+.filter-group {
+    margin-bottom: 20px;
+}
+
+.filter-label {
+    font-weight: 500;
+    margin-bottom: 10px;
+    width: 100%;
+    display: block;
+    font-size: 0.95rem;
+}
+
+.filter-select, .filter-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    background-color: white;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.filter-button {
+    width: 100%;
+    background-color: var(--hospital-blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 14px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* Category Cards */
+.category-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 16px;
+}
+
+.category-card {
+    background-color: var(--medical-white);
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: var(--shadow-light);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+
+.category-icon {
+    font-size: 40px;
+    color: var(--hospital-blue);
+    margin-bottom: 20px;
+}
+
+.category-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.category-card p {
+    color: var(--text-gray);
+}
+
+/* Price Comparison Styles */
+.comparison-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.test-basic-info {
+    background: var(--medical-white);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+    margin-bottom: 30px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-label {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    margin-bottom: 5px;
+}
+
+.info-value {
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.price-comparison-table {
+    background: var(--medical-white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-light);
+    margin: 20px 16px 30px;
+    overflow-x: auto;
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+.comparison-table th {
+    background: var(--light-blue);
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border-light);
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.comparison-table td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border-light);
+    font-size: 0.9rem;
+    vertical-align: top;
+}
+
+.comparison-table tr:last-child td {
+    border-bottom: none;
+}
+
+.comparison-table tr:hover {
+    background: #f8f9fa;
+}
+
+.price-cell {
+    font-weight: 600;
+    color: var(--hospital-blue);
+}
+
+.best-price {
+    background: var(--light-green);
+    position: relative;
+}
+
+.best-price-tag {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: var(--soft-green);
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+.center-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.center-logo-small {
+    width: 30px;
+    height: 30px;
+    background: var(--hospital-blue);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 14px;
+}
+
+.action-cell {
+    display: flex;
+    gap: 10px;
+}
+
+.view-center-btn, .call-btn {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.view-center-btn {
+    background: var(--hospital-blue);
+    color: white;
+    border: 1px solid var(--hospital-blue);
+}
+
+.call-btn {
+    background: transparent;
+    color: var(--hospital-blue);
+    border: 1px solid var(--hospital-blue);
+}
+
+.view-center-btn:hover, .call-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.test-details-sections {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-bottom: 40px;
+    padding: 0 16px;
+}
+
+.detail-section {
+    background: var(--medical-white);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+}
+
+.detail-section h3 {
+    color: var(--hospital-blue);
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.verification-notice {
+    background: #fff8e1;
+    border-left: 4px solid #ffc107;
+    padding: 15px;
+    margin: 30px 16px;
+    border-radius: 0 8px 8px 0;
+}
+
+.back-to-results {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--hospital-blue);
+    text-decoration: none;
+    font-weight: 500;
+    margin-bottom: 20px;
+    padding: 0 16px;
+}
+
+.test-image {
+    width: 80px;
+    height: 80px;
+    background: var(--light-blue);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--hospital-blue);
+    font-size: 32px;
+}
+
+.test-title-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    flex-direction: column;
+    text-align: center;
+    padding: 0 16px;
+}
+
+/* CTA Section */
+.cta-section {
+    padding: 40px 0;
+    background: linear-gradient(135deg, var(--hospital-blue), var(--soft-green));
+    color: white;
+    text-align: center;
+}
+
+.cta-section h2 {
+    font-size: 1.6rem;
+    margin-bottom: 16px;
+    padding: 0 16px;
+}
+
+.cta-section p {
+    font-size: 1rem;
+    max-width: 100%;
+    margin: 0 auto 25px;
+    opacity: 0.9;
+    padding: 0 16px;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: white;
+    color: var(--hospital-blue);
+    padding: 14px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+    min-height: 48px;
+    min-width: 200px;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer */
+footer {
+    background-color: var(--text-dark);
+    color: white;
+    padding: 40px 0 20px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+    padding: 0 16px;
+}
+
+.footer-column h3 {
+    color: white;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #bdc1c6;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 0.95rem;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+.social-links {
+    display: flex;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.social-link {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    font-size: 16px;
+}
+
+.social-link:hover {
+    background-color: var(--hospital-blue);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    text-align: center;
+    color: #bdc1c6;
+    font-size: 0.85rem;
+    padding: 20px 16px 0;
+}
+
+.footer-bottom p {
+    margin-bottom: 10px;
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+    html {
+        font-size: 14px;
+    }
+    
+    .container {
+        padding: 0 16px;
+    }
+    
+    .header-container {
+        padding: 10px 0;
+    }
+    
+    .logo-icon img.logo-img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .logo-text {
+        font-size: 20px;
+    }
+    
+    nav {
+        display: none;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: var(--medical-white);
+        box-shadow: var(--shadow-medium);
+        padding: 0;
+        z-index: 1001;
+        max-height: calc(100vh - 60px);
+        overflow-y: auto;
+    }
+    
+    nav.active {
+        display: block;
+        animation: slideDown 0.3s ease;
+    }
+    
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    nav ul {
+        flex-direction: column;
+        gap: 0;
+        padding: 0;
+    }
+    
+    nav ul li {
+        width: 100%;
+        border-bottom: 1px solid var(--border-light);
+    }
+    
+    nav ul li:last-child {
+        border-bottom: none;
+    }
+    
+    nav a {
+        display: block;
+        padding: 16px 20px;
+        font-size: 16px;
+    }
+    
+    .mobile-menu-btn {
+        display: flex;
+    }
+    
+    .hero {
+        padding: 30px 0;
+    }
+    
+    .hero h1 {
+        font-size: 1.6rem;
+        margin-bottom: 12px;
+    }
+    
+    .hero p {
+        font-size: 0.95rem;
+        margin-bottom: 25px;
+    }
+    
+    .search-container {
+        padding: 0;
+    }
+    
+    .search-input {
+        padding: 12px 45px 12px 16px;
+        font-size: 16px;
+    }
+    
+    .search-btn {
+        right: 8px;
+        padding: 8px 16px;
+        font-size: 14px;
+        min-width: 70px;
+    }
+    
+    .section-title {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+    }
+    
+    .action-cards {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .action-card {
+        min-height: auto;
+        padding: 16px;
+    }
+    
+    .action-icon {
+        font-size: 28px;
+        margin-bottom: 12px;
+    }
+    
+    .test-card-header h3 {
+        font-size: 1rem;
+    }
+    
+    .test-price {
+        font-size: 1rem;
+    }
+    
+    .view-details {
+        font-size: 0.85rem;
+    }
+    
+    /* Touch-friendly button sizes */
+    button, 
+    .view-details,
+    .filter-button,
+    .search-btn,
+    .view-center-btn,
+    .call-btn {
+        min-height: 44px;
+    }
+    
+    input, 
+    select, 
+    textarea {
+        font-size: 16px !important;
+        min-height: 44px;
+    }
+    
+    .category-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .category-card {
+        padding: 20px;
+    }
+    
+    .category-icon {
+        font-size: 32px;
+    }
+    
+    .comparison-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .action-cell {
+        flex-direction: column;
+    }
+    
+    .test-title-section {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    html {
+        font-size: 13px;
+    }
+    
+    .container {
+        padding: 0 12px;
+    }
+    
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+    
+    .hero p {
+        font-size: 0.9rem;
+    }
+    
+    .action-cards,
+    .test-cards,
+    .center-cards {
+        padding: 0;
+    }
+    
+    .filters,
+    .price-comparison-table {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    .page-header h1 {
+        font-size: 1.6rem;
+    }
+    
+    .section-title {
+        font-size: 1.3rem;
+    }
+    
+    .test-details-sections {
+        padding: 0;
+    }
+}
+
+@media (max-width: 375px) {
+    .logo-text {
+        font-size: 14px;
+    }
+    
+    .hero h1 {
+        font-size: 1.4rem;
+    }
+    
+    .search-btn {
+        min-width: 60px;
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+    
+    .action-card h3 {
+        font-size: 1rem;
+    }
+    
+    .action-card p {
+        font-size: 0.85rem;
+    }
+    
+    .cta-button {
+        min-width: 180px;
+        padding: 12px 24px;
+    }
+}
+
+/* Prevent zoom on input focus on iOS */
+@media screen and (max-width: 768px) {
+    input[type="text"],
+    input[type="search"],
+    input[type="number"],
+    select,
+    textarea {
+        font-size: 16px !important;
+    }
+}
+
+/* Improve touch targets */
+@media (hover: none) and (pointer: coarse) {
+    .action-card,
+    .test-card,
+    .center-card,
+    .category-card {
+        cursor: default;
+    }
+    
+    .action-card:active,
+    .test-card:active,
+    .center-card:active,
+    .category-card:active {
+        transform: scale(0.98);
+        transition: transform 0.1s;
+    }
+    
+    button:active,
+    .view-details:active,
+    .filter-button:active,
+    .view-center-btn:active,
+    .call-btn:active {
+        opacity: 0.8;
+    }
+}
+
+/* Desktop specific styles */
+@media (min-width: 769px) {
+    .hero {
+        padding: 80px 0;
+    }
+    
+    .hero h1 {
+        font-size: 2.8rem;
+        margin-bottom: 20px;
+    }
+    
+    .hero p {
+        font-size: 1.2rem;
+        max-width: 700px;
+    }
+    
+    .search-container {
+        max-width: 600px;
+        padding: 0;
+    }
+    
+    .quick-actions {
+        padding: 60px 0;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+    
+    .action-cards {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        padding: 0;
+    }
+    
+    .action-card {
+        min-height: auto;
+        padding: 30px;
+    }
+    
+    .action-icon {
+        font-size: 40px;
+        margin-bottom: 20px;
+    }
+    
+    .action-card h3 {
+        font-size: 1.3rem;
+    }
+    
+    .test-cards,
+    .center-cards,
+    .category-cards {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 25px;
+        padding: 0;
+    }
+    
+    .center-cards {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+    
+    .info-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    
+    .test-details-sections {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        padding: 0;
+    }
+    
+    .footer-content {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+        padding: 0;
+    }
+    
+    .filters,
+    .price-comparison-table {
+        margin: 0 0 30px 0;
+    }
+    
+    .verification-notice,
+    .back-to-results {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    .test-title-section {
+        flex-direction: row;
+        text-align: left;
+        padding: 0;
+    }
+    
+    .cta-section {
+        padding: 80px 0;
+    }
+    
+    .cta-section h2 {
+        font-size: 2.2rem;
+    }
+    
+    .cta-section p {
+        font-size: 1.1rem;
+        max-width: 700px;
+    }
+    
+    .page-header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .page-header p {
+        max-width: 700px;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo" id="homeLink">
+            <div class="logo-icon">
+            <img src="https://iili.io/fnrqlbp.png" alt="TestMediCTG Logo" class="logo-img">
+           </div>
+            </a>
+
+                <div class="logo-text">Test<span>MediCTG</span></div>
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#" class="nav-link active" data-page="homePage">Home</a></li>
+                    <li><a href="#" class="nav-link" data-page="testsPage">Test Prices</a></li>
+                    <li><a href="#" class="nav-link" data-page="priceComparisonPage">Price Comparison</a></li>
+                    <li><a href="#" class="nav-link" data-page="centersPage">Diagnostic Centers</a></li>
+                    <li><a href="#" class="nav-link" data-page="categoriesPage">Categories</a></li>
+                    <li><a href="#" class="nav-link" data-page="aboutPage">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="mainContent">
+        <!-- Home Page -->
+        <div id="homePage" class="page active">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="container">
+                    <h1>Diagnostic test prices in Chittagong</h1>
+                    <p>Updated every 30 days. Find the best prices for medical tests across Chittagong's top diagnostic centers.</p>
+                    <div class="search-container">
+                        <input type="text" class="search-input" id="homeSearchInput" placeholder="Search for tests or diagnostic centers...">
+                        <button class="search-btn" id="homeSearchBtn">Search</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="quick-actions">
+                <div class="container">
+                    <div class="action-cards">
+                        <a href="#" class="action-card" id="testPricesBtn">
+                            <div class="action-icon">
+                                <i class="fas fa-search-dollar"></i>
+                            </div>
+                            <h3>Test Prices</h3>
+                            <p>Compare prices for all diagnostic tests across Chittagong</p>
+                        </a>
+                        <a href="#" class="action-card" id="topCentersBtn">
+                            <div class="action-icon">
+                                <i class="fas fa-hospital"></i>
+                            </div>
+                            <h3>Top Centers</h3>
+                            <p>Explore Chittagong's leading diagnostic centers</p>
+                        </a>
+                        <a href="#" class="action-card" id="categoriesBtn">
+                            <div class="action-icon">
+                                <i class="fas fa-list-alt"></i>
+                            </div>
+                            <h3>Categories</h3>
+                            <p>Browse tests by medical categories</p>
+                        </a>
+                        <a href="#" class="action-card" id="aboutBtn">
+                            <div class="action-icon">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <h3>About Us</h3>
+                            <p>Learn about our mission and how we help</p>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Popular Tests -->
+            <section class="popular-tests">
+                <div class="container">
+                    <h2 class="section-title">Popular Tests in Chittagong</h2>
+                    <div class="test-cards">
+                        <!-- Test cards will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Diagnostic Centers -->
+            <section class="diagnostic-centers">
+                <div class="container">
+                    <h2 class="section-title">Top Diagnostic Centers in Chittagong</h2>
+                    <div class="center-cards">
+                        <!-- Center cards will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="cta-section">
+                <div class="container">
+                    <h2>Check prices before you spend</h2>
+                    <p>Save money on diagnostic tests by comparing prices across Chittagong's top diagnostic centers. Our platform provides transparent, updated pricing information.</p>
+                    <a href="#" class="cta-button" id="ctaButton">Compare Test Prices Now</a>
+                </div>
+            </section>
+        </div>
+
+        <!-- Test Prices Page -->
+        <div id="testsPage" class="page">
+            <div class="page-content">
+                <div class="container">
+                    <div class="page-header">
+                        <h1>Test Prices</h1>
+                        <p>Compare prices for diagnostic tests across Chittagong's top diagnostic centers</p>
+                    </div>
+
+                    <div class="search-container" style="max-width: 800px; margin-bottom: 30px;">
+                        <input type="text" class="search-input" id="testSearchInput" placeholder="Search for tests..(👇Scroll down to find)">
+                        <button class="search-btn" id="testSearchBtn">Search</button>
+                    </div>
+
+                    <div class="filters">
+                        <div class="filter-group">
+                            <div class="filter-label">Filter by Category (👇Scroll down to find)</div>
+                            <select class="filter-select" id="categoryFilter">
+                                <option value="">All Categories</option>
+                                <option value="blood">Blood Tests</option>
+                                <option value="hormone">Hormone Tests</option>
+                                <option value="allergy">Allergy Tests</option>
+                                <option value="imaging">Imaging</option>
+                                <option value="urine">Urine Tests</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <div class="filter-label">Filter by Price Range (👇Scroll down to find)</div>
+                            <input type="number" class="filter-input" id="minPrice" placeholder="Min Price">
+                            <span>to</span>
+                            <input type="number" class="filter-input" id="maxPrice" placeholder="Max Price">
+                            <button class="filter-button" id="applyFilters">Apply Filters</button>
+                        </div>
+                    </div>
+
+                    <div class="test-cards">
+                        <!-- Test cards will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Price Comparison Page -->
+        <div id="priceComparisonPage" class="page">
+            <div class="page-content">
+                <div class="container">
+                    <a href="#" class="back-to-results" id="backToResults">
+                        <i class="fas fa-arrow-left"></i> Back to Test Results
+                    </a>
+                    
+                    <div class="comparison-header">
+                        <div class="test-title-section">
+                            <div class="test-image">
+                                <i class="fas fa-tint"></i>
+                            </div>
+                            <div>
+                                <h1>Complete Blood Count (CBC)</h1>
+                                <p>Compare prices across Chittagong's top diagnostic centers</p>
+                            </div>
+                        </div>
+                        
+                        <div class="search-container" style="max-width: 400px;">
+                            <input type="text" class="search-input" id="comparisonSearch" placeholder="Search....">
+                            <button class="search-btn" id="comparisonSearchBtn">Search</button>
+                        </div>
+                    </div>
+
+                    <div class="test-basic-info">
+                        <h2>Test Overview</h2>
+                        <div class="info-grid" id="testInfoGrid">
+                            <!-- Info grid will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="price-comparison-table">
+                        <div style="padding: 20px; border-bottom: 1px solid var(--border-light);">
+                            <h2>Price Comparison Table</h2>
+                            <h3>To know the diagnostic center’s phone number and opening hours, go to the " Diagnostic Center " page.</h3>
+                        </div>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Diagnostic Center</th>
+                                    <th>Price</th>
+                                    <th>Report Time</th>
+                                    <th>Location</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="comparisonTableBody">
+                                <!-- Table rows will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="test-details-sections" id="testDetailsSections">
+                        <!-- Test details will be populated by JavaScript -->
+                    </div>
+
+                    <div class="verification-notice">
+                        <h3><i class="fas fa-info-circle"></i> Price Verification Notice</h3>
+                        <p>All prices shown are collected from diagnostic centers' published price lists and verified every 30 days. <strong> We recommend contacting the diagnostic center directly to confirm the current price before visiting. TestMediCTG is not responsible for price difference.</strong></p>
+                        <br><br>
+                        <p><strong>Last comprehensive verification:</strong> December 11, 2025</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diagnostic Centers Page -->
+        <div id="centersPage" class="page">
+            <div class="page-content">
+                <div class="container">
+                    <div class="page-header">
+                        <h1>Diagnostic Centers</h1>
+                        <p>Explore Chittagong's top diagnostic centers and their services</p>
+                    </div>
+
+                    <div class="search-container" style="max-width: 800px; margin-bottom: 30px;">
+                        <input type="text" class="search-input" id="centerSearchInput" placeholder="Search for diagnostic centers...">
+                        <button class="search-btn" id="centerSearchBtn">Search</button>
+                    </div>
+
+                    <div class="center-cards" id="centerCardsContainer">
+                        <!-- Center cards will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Categories Page -->
+        <div id="categoriesPage" class="page">
+            <div class="page-content">
+                <div class="container">
+                    <div class="page-header">
+                        <h1>Test Categories</h1>
+                        <p>Browse diagnostic tests by medical categories</p>
+                    </div>
+
+                    <div class="category-cards">
+                        <a href="#" class="category-card" data-category="blood">
+                            <div class="category-icon">
+                                <i class="fas fa-tint"></i>
+                            </div>
+                            <h3>Blood Tests</h3>
+                            <p>Complete blood count, lipid profile, liver function tests, and more</p>
+                        </a>
+                        <a href="#" class="category-card" data-category="hormone">
+                            <div class="category-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>Hormone Tests</h3>
+                            <p>Thyroid profile, testosterone, estrogen, progesterone, and more</p>
+                        </a>
+                        <a href="#" class="category-card" data-category="allergy">
+                            <div class="category-icon">
+                                <i class="fas fa-syringe"></i>
+                            </div>
+                            <h3>Allergy Tests</h3>
+                            <p> Skin prick tests, Blood tests (specific IgE), and Supervised Oral Challenge tests</p>
+                        </a>
+                        <a href="#" class="category-card" data-category="imaging">
+                            <div class="category-icon">
+                                <i class="fas fa-x-ray"></i>
+                            </div>
+                            <h3>Imaging</h3>
+                            <p>Ultrasound, X-Ray, CT Scan, MRI, and other imaging procedures</p>
+                        </a>
+                        <a href="#" class="category-card" data-category="urine">
+                            <div class="category-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <h3>Urine Tests</h3>
+                            <p>Urinalysis, urine culture, microalbuminuria, and other urine tests</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Page -->
+        <div id="aboutPage" class="page">
+            <div class="page-content">
+                <div class="container">
+                    <div class="page-header">
+                        <h1>About TestMediCTG</h1>
+                        <p>Chittagong's first diagnostic test price comparison platform</p>
+                    </div>
+
+                    <div class="mission-section">
+                        <h2>Our Mission</h2>
+                        <p>TestMediCTG aims to bring transparency to healthcare costs in Chittagong by providing accurate, up-to-date information about diagnostic test prices across the city's leading diagnostic centers.</p>
+                        <p>We believe that everyone should have access to clear pricing information before making healthcare decisions, helping patients save money and make informed choices.</p>
+                    </div>
+
+                    <div class="problem-solution">
+                        <div class="problem-box">
+                            <br><br>
+                            <h2>The Problem</h2>
+                            <p>Chittagong has varying test prices across different diagnostic centers, with hidden details and lack of transparency. Patients often pay different prices for the same test without knowing they could get it for less elsewhere.</p>
+                        </div>
+                        <div class="solution-box">
+                            <br><br>
+                            <h2>Our Solution</h2>
+                            <p>TestMediCTG provides transparent, verified online data updated every 30 days. We show comparative pricing from all major diagnostic centers in Chittagong, helping you make informed decisions about your healthcare spending.</p>
+                        </div>
+                    </div>
+
+                    <div class="mission-section">
+                        <br><br>
+                        <h2>What We Do</h2>
+                        <p>TestMediCTG is an information-only platform. We do not book tests or appointments. Our focus is solely on providing accurate, up-to-date pricing information to help you compare costs across different diagnostic centers in Chittagong.</p>
+                        <p>Our team regularly verifies prices with diagnostic centers to ensure the information we provide is current and reliable.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>TestMediCTG</h3>
+                    <p>Chittagong's first diagnostic test price comparison platform. Helping you make informed healthcare decisions.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" class="footer-nav" data-page="homePage">Home</a></li>
+                        <li><a href="#" class="footer-nav" data-page="testsPage">Test Prices</a></li>
+                        <li><a href="#" class="footer-nav" data-page="priceComparisonPage">Price Comparison</a></li>
+                        <li><a href="#" class="footer-nav" data-page="centersPage">Diagnostic Centers</a></li>
+                        <li><a href="#" class="footer-nav" data-page="aboutPage">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> testmedictg@gmail.com</li>
+                        <li><i class="fas fa-phone"></i> +880 1331495252</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Chittagong, Bangladesh</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TestMediCTG. All rights reserved. | Helping Chittagong compare diagnostic test prices since 2025.</p>
+                <p>Disclaimer: Prices are collected from online sources and may differ at labs. We provide information only, not medical advice.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    
+     const centerData = [
+  {
+    "id": 1,
+    "name": "Evercare Hospital Diagnostic",
+    "location": "Plot No. H1, Anannya CDA Residential Area, Oxygen‑Kuwaish Rd, Chattogram",
+    "phone": "10663",
+    "hours": "Open 24/7",
+    "testsAvailable": "500+ tests",
+    "description": "International‑standard diagnostics with advanced imaging, emergency labs, and specialized medical screening."
+  },
+  {
+    "id": 2,
+    "name": "LABAID Specialized Hospital Chattogram",
+    "location": "3046 O.R. Nizam Rd, Chattogram 4000",
+    "phone": "09666‑786111",
+    "hours": "7 AM – 11 PM",
+    "testsAvailable": "400+ tests",
+    "description": "Nationwide brand known for accurate lab reports, modern diagnostic equipment, and professional service."
+  },
+  {
+    "id": 3,
+    "name": "Popular Diagnostic Center",
+    "location": "20/B, K.B. Fazlul Kader Rd, Chattogram",
+    "phone": "09666‑787810",
+    "hours": "7 AM – 11 PM",
+    "testsAvailable": "350+ tests",
+    "description": "One of the largest diagnostic networks offering reliable pathology, imaging, and specialist consultations."
+  },
+  {
+    "id": 4,
+    "name": "Chevron Clinical Laboratory (Pvt.) Ltd.",
+    "location": "12/12 O.R. Nizam Road, Panchlaish, Chattogram",
+    "phone": "01755‑666969",
+    "hours": "7 AM – 10:30 PM",
+    "testsAvailable": "230+ tests",
+    "description": "Diagnostic facility offering lab tests, imaging, and health packages with good service quality."
+  },
+  {
+    "id": 5,
+    "name": "CSCR Diagnostic & Hospital",
+    "location": "1675/A, O.R. Nizam Rd, Chattogram",
+    "phone": "01887‑656565",
+    "hours": "Open 24/7",
+    "testsAvailable": "200+ tests",
+    "description": "Diagnostic center with laboratory and imaging facilities in Chattogram."
+  },
+  {
+    "id": 6,
+    "name": "Max Hospital Chittagong",
+    "location": "35/36 Mehedibag, Chattogram",
+    "phone": "01713‑998166",
+    "hours": "Open 24/7",
+    "testsAvailable": "350+ tests",
+    "description": "Hospital‑based diagnostic services including imaging, pathology, and emergency test support."
+  },
+  {
+    "id": 7,
+    "name": "Parkview Hospital",
+    "location": "94/103 Road No 3, Panchlaish, Chattogram",
+    "phone": "09610‑818888",
+    "hours": "Open 24/7",
+    "testsAvailable": "280+ tests",
+    "description": "Modern diagnostic facilities in a multi‑specialty hospital environment with expert consultations."
+  },
+  {
+    "id": 8,
+    "name": "Chattogram Metropolitan Diagnostic Center",
+    "location": "O.R. Nizam Rd, GEC Circle, Chattogram",
+    "phone": "01810‑030999",
+    "hours": "Open 24/7",
+    "testsAvailable": "300+ tests",
+    "description": "Hospital‑based diagnostic center offering lab tests, imaging, and emergency diagnostic support."
+  },
+  {
+    "id": 9,
+    "name": "Epic Health Care Ltd.",
+    "location": "K.B. Fazlul Kader Road, Panchlaish, Chattogram",
+    "phone": "01984‑499600",
+    "hours": "7 AM – 11 PM",
+    "testsAvailable": "300+ tests",
+    "description": "Accredited diagnostic center offering lab testing and accurate reports."
+  },
+  {
+    "id": 10,
+    "name": "Medical Centre (Pvt.) Ltd.",
+    "location": "O.R. Nizam Rd, Chattogram",
+    "phone": "02‑41355611",
+    "hours": "Open 24/7",
+    "testsAvailable": "280+ tests",
+    "description": "One of Chattogram's older diagnostic facilities known for consistent report accuracy."
+  },
+  {
+    "id": 11,
+    "name": "Ibn Sina Diagnostic & Consultation Center",
+    "location": "H#12/A, Road No 2, Katalgonj, Chattogram",
+    "phone": "09610‑009622",
+    "hours": "7 AM – 11 PM",
+    "testsAvailable": "350+ tests",
+    "description": "Diagnostic center under Ibn Sina brand offering lab tests and imaging services."
+  }
+];
+const testData = [
+  {
+    "id": 1,
+    "name": "Complete Blood Count (CBC)",
+    "category": "blood",
+    "priceRange": "250 - 700",
+    "reportTime": "3-6 hours",
+    "labs": "11 centers",
+    "description": "Measures red cells, white cells, hemoglobin, and platelets.",
+    "sampleType": "Blood",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 650, "reportTime": "4 hours", "location": "Oxygen‑Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 600, "reportTime": "5 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 300, "reportTime": "4 hours", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 400, "reportTime": "5 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 350, "reportTime": "5 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 500, "reportTime": "4 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 450, "reportTime": "5 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 420, "reportTime": "5 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 480, "reportTime": "6 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 420, "reportTime": "5 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 350, "reportTime": "5 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "ESR",
+    "category": "blood",
+    "priceRange": "150 - 300",
+    "reportTime": "2-4 hours",
+    "labs": "11 centers",
+    "description": "Measures inflammation level in the body.",
+    "sampleType": "Blood",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 300, "reportTime": "3 hours", "location": "Oxygen‑Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 260, "reportTime": "3.5 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 180, "reportTime": "2 hours", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 220, "reportTime": "3 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 200, "reportTime": "3.5 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 240, "reportTime": "4 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 230, "reportTime": "3.5 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 220, "reportTime": "3.5 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 240, "reportTime": "4 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 210, "reportTime": "3 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 200, "reportTime": "4 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Blood Group (ABO & Rh)",
+    "category": "blood",
+    "priceRange": "120 - 300",
+    "reportTime": "1-2 hours",
+    "labs": "11 centers",
+    "description": "Determines blood group and Rh factor.",
+    "sampleType": "Blood",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 280, "reportTime": "2 hours", "location": "Oxygen‑Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 240, "reportTime": "2 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 150, "reportTime": "1 hour", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 200, "reportTime": "2 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 180, "reportTime": "2 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 210, "reportTime": "2 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 200, "reportTime": "2 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 220, "reportTime": "2 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 220, "reportTime": "2 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 200, "reportTime": "2 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 160, "reportTime": "2 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Fasting Blood Sugar (FBS)",
+    "category": "blood",
+    "priceRange": "150 - 300",
+    "reportTime": "2-3 hours",
+    "labs": "11 centers",
+    "description": "Measures glucose level after fasting.",
+    "sampleType": "Blood",
+    "fasting": "Required (8 hours)",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 280, "reportTime": "3 hours", "location": "Oxygen‑Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 260, "reportTime": "3 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 180, "reportTime": "2 hours", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 240, "reportTime": "3 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 220, "reportTime": "3 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 260, "reportTime": "3 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 240, "reportTime": "3 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 250, "reportTime": "3 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 250, "reportTime": "3 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 230, "reportTime": "3 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 200, "reportTime": "3 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Random Blood Sugar (RBS)",
+    "category": "blood",
+    "priceRange": "150 - 250",
+    "reportTime": "1-2 hours",
+    "labs": "11 centers",
+    "description": "Measures glucose level at any time.",
+    "sampleType": "Blood",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 240, "reportTime": "2 hours", "location": "Oxygen‑Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 220, "reportTime": "2 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 160, "reportTime": "1 hour", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 200, "reportTime": "1.5 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 200, "reportTime": "2 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 210, "reportTime": "1.5 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 220, "reportTime": "2 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 210, "reportTime": "2 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 230, "reportTime": "2 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 200, "reportTime": "2 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 180, "reportTime": "2 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Serum Creatinine",
+    "category": "blood",
+    "priceRange": "300 - 500",
+    "reportTime": "3-5 hours",
+    "labs": "11 centers",
+    "description": "Measures kidney function based on creatinine levels.",
+    "sampleType": "Blood",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 500, "reportTime": "3 hours", "location": "Oxygen‑Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 450, "reportTime": "3.5 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 320, "reportTime": "3 hours", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 400, "reportTime": "3 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 380, "reportTime": "4 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 460, "reportTime": "4 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 440, "reportTime": "4 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 420, "reportTime": "4 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 440, "reportTime": "4 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 400, "reportTime": "4 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 350, "reportTime": "4 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Lipid Profile",
+    "category": "blood",
+    "priceRange": "600 - 1200",
+    "reportTime": "5-8 hours",
+    "labs": "11 centers",
+    "description": "Measures cholesterol levels including HDL, LDL, TG.",
+    "sampleType": "Blood",
+    "fasting": "Required (10-12 hours)",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 1150, "reportTime": "6 hours", "location": "Oxygen‑Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 900, "reportTime": "6 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 700, "reportTime": "6 hours", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 950, "reportTime": "6 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 900, "reportTime": "7 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 1050, "reportTime": "6 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 950, "reportTime": "7 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 900, "reportTime": "7 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 980, "reportTime": "6 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 850, "reportTime": "6 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 800, "reportTime": "6 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Liver Function Test (LFT)",
+    "category": "blood",
+    "priceRange": "800 - 1500",
+    "reportTime": "6-10 hours",
+    "labs": "11 centers",
+    "description": "Evaluates liver health with enzymes and bilirubin.",
+    "sampleType": "Blood",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 1450, "reportTime": "7 hours", "location": "Oxygen‑Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 1200, "reportTime": "8 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 900, "reportTime": "7 hours", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 1100, "reportTime": "7 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 1000, "reportTime": "8 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 1300, "reportTime": "8 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 1200, "reportTime": "9 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 1150, "reportTime": "8 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 1250, "reportTime": "7 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 1100, "reportTime": "8 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 1000, "reportTime": "8 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Urine Routine",
+    "category": "urine",
+    "priceRange": "100 - 250",
+    "reportTime": "1-2 hours",
+    "labs": "11 centers",
+    "description": "Analyzes urine for infections, glucose, proteins.",
+    "sampleType": "Urine",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 240, "reportTime": "1.5 hours", "location": "Oxygen‑Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 200, "reportTime": "1.5 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 120, "reportTime": "1 hour", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 180, "reportTime": "1.5 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 160, "reportTime": "1.5 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 220, "reportTime": "2 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 200, "reportTime": "1.5 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 190, "reportTime": "1.5 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 210, "reportTime": "2 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 190, "reportTime": "2 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 160, "reportTime": "2 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Urine Culture",
+    "category": "urine",
+    "priceRange": "500 - 1100",
+    "reportTime": "24-48 hours",
+    "labs": "11 centers",
+    "description": "Detects bacterial growth in urine for infections.",
+    "sampleType": "Urine",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 1050, "reportTime": "24 hours", "location": "Oxygen‑Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 900, "reportTime": "24 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 600, "reportTime": "24 hours", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 800, "reportTime": "24 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 750, "reportTime": "24 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 1000, "reportTime": "24 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 900, "reportTime": "24 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 850, "reportTime": "24 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 900, "reportTime": "24 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 800, "reportTime": "24 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 700, "reportTime": "24 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Thyroid Profile (T3, T4, TSH)",
+    "category": "blood",
+    "priceRange": "600 - 1200",
+    "reportTime": "6-10 hours",
+    "labs": "11 centers",
+    "description": "Measures thyroid hormone levels.",
+    "sampleType": "Blood",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 1150, "reportTime": "7 hours", "location": "Oxygen‑Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 1000, "reportTime": "7 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 800, "reportTime": "7 hours", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 950, "reportTime": "7 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 900, "reportTime": "8 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 1050, "reportTime": "8 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 950, "reportTime": "8 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 920, "reportTime": "8 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 980, "reportTime": "7 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 900, "reportTime": "7 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 850, "reportTime": "7 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Vitamin D Test",
+    "category": "blood",
+    "priceRange": "1200 - 2000",
+    "reportTime": "12-24 hours",
+    "labs": "11 centers",
+    "description": "Measures vitamin D level in blood.",
+    "sampleType": "Blood",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 1900, "reportTime": "14 hours", "location": "Oxygen‑Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 1700, "reportTime": "14 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 1300, "reportTime": "12 hours", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 1600, "reportTime": "14 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 1500, "reportTime": "16 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 1800, "reportTime": "14 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 1650, "reportTime": "14 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 1600, "reportTime": "14 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 1700, "reportTime": "12 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 1500, "reportTime": "14 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 1400, "reportTime": "14 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 13,
+    "name": "C-Reactive Protein (CRP)",
+    "category": "blood",
+    "priceRange": "400 - 900",
+    "reportTime": "4-6 hours",
+    "labs": "11 centers",
+    "description": "Detects inflammation and infection in the body.",
+    "sampleType": "Blood",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 800, "reportTime": "4 hours", "location": "Oxygen‑Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 750, "reportTime": "5 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 500, "reportTime": "4 hours", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 700, "reportTime": "5 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 680, "reportTime": "5 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 850, "reportTime": "5 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 800, "reportTime": "5 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 780, "reportTime": "5 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 820, "reportTime": "5 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 750, "reportTime": "5 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 700, "reportTime": "5 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 14,
+    "name": "HBA1C",
+    "category": "blood",
+    "priceRange": "800 - 1400",
+    "reportTime": "6-8 hours",
+    "labs": "11 centers",
+    "description": "Measures long-term glucose control over 3 months.",
+    "sampleType": "Blood",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 1300, "reportTime": "7 hours", "location": "Oxygen‑Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 1100, "reportTime": "7 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 800, "reportTime": "6 hours", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 1000, "reportTime": "7 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 950, "reportTime": "7 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 1200, "reportTime": "8 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 1100, "reportTime": "8 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 1080, "reportTime": "7 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 1150, "reportTime": "7 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 1050, "reportTime": "7 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 1000, "reportTime": "7 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 15,
+    "name": "Serum Electrolytes (Na, K, Cl)",
+    "category": "blood",
+    "priceRange": "500 - 900",
+    "reportTime": "4-6 hours",
+    "labs": "11 centers",
+    "description": "Measures key electrolytes for body balance.",
+    "sampleType": "Blood",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 900, "reportTime": "4 hours", "location": "Oxygen‑Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 850, "reportTime": "5 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 550, "reportTime": "4 hours", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 700, "reportTime": "5 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 680, "reportTime": "5 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 850, "reportTime": "5 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 800, "reportTime": "5 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 780, "reportTime": "5 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 820, "reportTime": "5 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 750, "reportTime": "5 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 700, "reportTime": "5 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 16,
+    "name": "TSH (Thyroid Stimulating Hormone)",
+    "category": "hormone",
+    "priceRange": "500 - 1100",
+    "reportTime": "6-12 hours",
+    "labs": "11 centers",
+    "description": "Evaluates thyroid gland function and detects hypothyroidism or hyperthyroidism.",
+    "sampleType": "Blood",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 1050, "reportTime": "8 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 950, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 600, "reportTime": "7 hours", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 750, "reportTime": "8 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 700, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 850, "reportTime": "7 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 800, "reportTime": "10 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 780, "reportTime": "10 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 880, "reportTime": "12 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 780, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 650, "reportTime": "9 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 17,
+    "name": "Free T4",
+    "category": "hormone",
+    "priceRange": "600 - 1400",
+    "reportTime": "6-12 hours",
+    "labs": "11 centers",
+    "description": "Measures the level of unbound thyroxine hormone to assess thyroid status.",
+    "sampleType": "Blood",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 1350, "reportTime": "8 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 1200, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 700, "reportTime": "7 hours", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 900, "reportTime": "9 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 850, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 1000, "reportTime": "8 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 950, "reportTime": "10 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 920, "reportTime": "10 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 1100, "reportTime": "12 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 920, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 780, "reportTime": "9 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 18,
+    "name": "Free T3",
+    "category": "hormone",
+    "priceRange": "600 - 1400",
+    "reportTime": "6-12 hours",
+    "labs": "11 centers",
+    "description": "Measures unbound triiodothyronine hormone to help diagnose thyroid disorders.",
+    "sampleType": "Blood",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 1300, "reportTime": "8 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 1150, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 680, "reportTime": "7 hours", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 880, "reportTime": "9 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 820, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 980, "reportTime": "8 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 930, "reportTime": "10 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 900, "reportTime": "10 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 1080, "reportTime": "12 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 900, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 760, "reportTime": "9 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 19,
+    "name": "Prolactin",
+    "category": "hormone",
+    "priceRange": "600 - 1500",
+    "reportTime": "6-12 hours",
+    "labs": "11 centers",
+    "description": "Measures prolactin levels to diagnose hormone imbalance, PCOS, and fertility issues.",
+    "sampleType": "Blood",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 1400, "reportTime": "8 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 1250, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 700, "reportTime": "7 hours", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 950, "reportTime": "9 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 900, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 1100, "reportTime": "8 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 1050, "reportTime": "10 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 1000, "reportTime": "10 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 1200, "reportTime": "12 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 960, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 800, "reportTime": "9 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 20,
+    "name": "FSH (Follicle Stimulating Hormone)",
+    "category": "hormone",
+    "priceRange": "700 - 1600",
+    "reportTime": "6-12 hours",
+    "labs": "11 centers",
+    "description": "Evaluates reproductive health, fertility, menstrual cycle disorders, and ovarian reserve.",
+    "sampleType": "Blood",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 1500, "reportTime": "8 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 1300, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 750, "reportTime": "7 hours", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 980, "reportTime": "9 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 920, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 1150, "reportTime": "8 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 1100, "reportTime": "10 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 1050, "reportTime": "10 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 1250, "reportTime": "12 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 980, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 840, "reportTime": "9 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 21,
+    "name": "LH (Luteinizing Hormone)",
+    "category": "hormone",
+    "priceRange": "700 - 1600",
+    "reportTime": "6-12 hours",
+    "labs": "11 centers",
+    "description": "Assesses ovulation, reproductive health, fertility issues, and PCOS.",
+    "sampleType": "Blood",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 1500, "reportTime": "8 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 1300, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 750, "reportTime": "7 hours", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 980, "reportTime": "9 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 920, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 1150, "reportTime": "8 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 1100, "reportTime": "10 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 1050, "reportTime": "10 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 1250, "reportTime": "12 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 980, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 840, "reportTime": "9 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 22,
+    "name": "AMH (Anti-Mullerian Hormone)",
+    "category": "hormone",
+    "priceRange": "2000 - 3500",
+    "reportTime": "12-24 hours",
+    "labs": "11 centers",
+    "description": "Determines ovarian reserve and fertility potential.",
+    "sampleType": "Blood",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 3400, "reportTime": "20 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 3100, "reportTime": "18 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 2200, "reportTime": "15 hours", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 2600, "reportTime": "18 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 2500, "reportTime": "20 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 2800, "reportTime": "16 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 2700, "reportTime": "20 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 2650, "reportTime": "20 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 2900, "reportTime": "22 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 2650, "reportTime": "20 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 2400, "reportTime": "18 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 23,
+    "name": "Total Testosterone",
+    "category": "hormone",
+    "priceRange": "800 - 2000",
+    "reportTime": "12-24 hours",
+    "labs": "11 centers",
+    "description": "Measures testosterone levels for male hormone balance, fertility, and PCOS.",
+    "sampleType": "Blood",
+    "fasting": "Required (10-12 hours)",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 1950, "reportTime": "20 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 1700, "reportTime": "18 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 1000, "reportTime": "15 hours", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 1400, "reportTime": "18 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 1300, "reportTime": "20 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 1500, "reportTime": "16 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 1450, "reportTime": "20 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 1400, "reportTime": "20 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 1600, "reportTime": "22 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 1400, "reportTime": "20 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 1200, "reportTime": "18 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 24,
+    "name": "Insulin (Fasting)",
+    "category": "hormone",
+    "priceRange": "700 - 1800",
+    "reportTime": "6-12 hours",
+    "labs": "11 centers",
+    "description": "Measures fasting insulin levels to assess diabetes risk, insulin resistance, and PCOS.",
+    "sampleType": "Blood",
+    "fasting": "Required (8-12 hours)",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 1750, "reportTime": "8 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 1500, "reportTime": "9 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 900, "reportTime": "6 hours", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 1200, "reportTime": "7 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 1150, "reportTime": "8 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 1300, "reportTime": "7 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 1250, "reportTime": "8 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 1200, "reportTime": "8 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 1400, "reportTime": "10 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 1200, "reportTime": "8 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 1000, "reportTime": "7 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 25,
+    "name": "Cortisol (AM)",
+    "category": "hormone",
+    "priceRange": "800 - 2000",
+    "reportTime": "12-24 hours",
+    "labs": "11 centers",
+    "description": "Assesses stress hormone levels, adrenal function, and cortisol-related disorders.",
+    "sampleType": "Blood",
+    "fasting": "Required (8 hours)",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 1950, "reportTime": "20 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 1700, "reportTime": "18 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 1000, "reportTime": "15 hours", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 1400, "reportTime": "18 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 1300, "reportTime": "20 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 1500, "reportTime": "16 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 1450, "reportTime": "20 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 1400, "reportTime": "20 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 1600, "reportTime": "22 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 1400, "reportTime": "20 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 1200, "reportTime": "18 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 26,
+    "name": "Urine ACR (Albumin-Creatinine Ratio)",
+    "category": "urine",
+    "priceRange": "500 - 900",
+    "reportTime": "6-12 hours",
+    "labs": "11 centers",
+    "description": "Measures albumin levels in urine to detect early kidney damage, especially in diabetes and hypertension.",
+    "sampleType": "Urine",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 850, "reportTime": "8 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 700, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 550, "reportTime": "8 hours", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 750, "reportTime": "9 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 680, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 720, "reportTime": "8 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 700, "reportTime": "10 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 720, "reportTime": "10 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 780, "reportTime": "12 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 690, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 600, "reportTime": "9 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 27,
+    "name": "Urine PCR (Protein-Creatinine Ratio)",
+    "category": "urine",
+    "priceRange": "600 - 1100",
+    "reportTime": "8-12 hours",
+    "labs": "11 centers",
+    "description": "Assesses total protein loss in urine and helps diagnose kidney diseases such as nephrotic syndrome.",
+    "sampleType": "Urine",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 1050, "reportTime": "9 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 880, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 650, "reportTime": "8 hours", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 900, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 820, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 900, "reportTime": "8 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 870, "reportTime": "12 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 900, "reportTime": "10 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 950, "reportTime": "12 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 880, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 750, "reportTime": "9 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 28,
+    "name": "Urine Microalbumin Test",
+    "category": "urine",
+    "priceRange": "400 - 900",
+    "reportTime": "6-10 hours",
+    "labs": "11 centers",
+    "description": "Detects small amounts of albumin in urine for early diagnosis of diabetic kidney damage.",
+    "sampleType": "Urine",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 780, "reportTime": "8 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 650, "reportTime": "9 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 450, "reportTime": "7 hours", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 620, "reportTime": "8 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 600, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 650, "reportTime": "8 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 630, "reportTime": "10 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 640, "reportTime": "10 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 700, "reportTime": "12 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 620, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 500, "reportTime": "8 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 29,
+    "name": "Urine Electrolytes (Na⁺, K⁺, Cl⁻)",
+    "category": "urine",
+    "priceRange": "700 - 1400",
+    "reportTime": "10-24 hours",
+    "labs": "11 centers",
+    "description": "Measures urine sodium, potassium, and chloride to assess kidney function and electrolyte imbalance.",
+    "sampleType": "Urine",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 1200, "reportTime": "12 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 950, "reportTime": "12 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 750, "reportTime": "10 hours", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 900, "reportTime": "12 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 880, "reportTime": "12 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 950, "reportTime": "10 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 920, "reportTime": "12 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 930, "reportTime": "12 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 1000, "reportTime": "24 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 900, "reportTime": "12 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 800, "reportTime": "12 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 30,
+    "name": "Urine Pregnancy Test (β-hCG)",
+    "category": "urine",
+    "priceRange": "150 - 350",
+    "reportTime": "1 hour",
+    "labs": "11 centers",
+    "description": "Detects the pregnancy hormone hCG in urine for early pregnancy confirmation.",
+    "sampleType": "Urine",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 300, "reportTime": "1 hour", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 220, "reportTime": "1 hour", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 150, "reportTime": "30 minutes", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 200, "reportTime": "1 hour", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 180, "reportTime": "1 hour", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 210, "reportTime": "1 hour", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 200, "reportTime": "1 hour", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 220, "reportTime": "1 hour", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 220, "reportTime": "1 hour", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 200, "reportTime": "1 hour", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 160, "reportTime": "1 hour", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 31,
+    "name": "X ray (Radiography / Digital X-ray)",
+    "category": "imaging",
+    "priceRange": "350 - 800",
+    "reportTime": "2 - 4 hours",
+    "labs": "11 centers",
+    "description": "A quick imaging test using low-dose radiation to visualize bones, chest, and other body structures.",
+    "sampleType": "Depends",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 750, "reportTime": "3 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 700, "reportTime": "3 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 500, "reportTime": "2 hours", "location": "K.B. Fazlul Kader Rd", "isBest": false },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 400, "reportTime": "3 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 500, "reportTime": "3 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 450, "reportTime": "3 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 500, "reportTime": "3 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 350, "reportTime": "2 hours", "location": "GEC Circle", "isBest": true },
+      { "center": "Epic Health Care Ltd.", "price": 450, "reportTime": "3 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 500, "reportTime": "2 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 500, "reportTime": "3 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 32,
+    "name": "Ultrasound (Sonography / 2D / 4D / Doppler)",
+    "category": "imaging",
+    "priceRange": "800 - 2500",
+    "reportTime": "1 - 4 hours",
+    "labs": "11 centers",
+    "description": "A radiation-free imaging method using sound waves to visualize organs, pregnancy, soft tissues, and blood flow.",
+    "sampleType": "Depends",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 2500, "reportTime": "3 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 2000, "reportTime": "3 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 1400, "reportTime": "2 hours", "location": "K.B. Fazlul Kader Rd", "isBest": false },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 1200, "reportTime": "2 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 1500, "reportTime": "3 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 1300, "reportTime": "3 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 1400, "reportTime": "3 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 800, "reportTime": "2 hours", "location": "GEC Circle", "isBest": true },
+      { "center": "Epic Health Care Ltd.", "price": 1300, "reportTime": "3 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 1400, "reportTime": "3 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 1300, "reportTime": "3 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 33,
+    "name": "Computed Tomography (CT Scan / CAT Scan)",
+    "category": "imaging",
+    "priceRange": "3500 - 12000",
+    "reportTime": "4 - 24 hours",
+    "labs": "11 centers",
+    "description": "A detailed imaging test that uses rotating X-ray beams to create cross-sectional views of bones, organs, and vessels.",
+    "sampleType": "Depends",
+    "fasting": "Depends",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 12000, "reportTime": "12 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 11000, "reportTime": "12 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 7000, "reportTime": "8 hours", "location": "K.B. Fazlul Kader Rd", "isBest": false },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 6000, "reportTime": "8 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 7500, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 6500, "reportTime": "10 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 7000, "reportTime": "10 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 3500, "reportTime": "8 hours", "location": "GEC Circle", "isBest": true },
+      { "center": "Epic Health Care Ltd.", "price": 6000, "reportTime": "12 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 7000, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 6500, "reportTime": "12 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 34,
+    "name": "Magnetic Resonance Imaging (MRI)",
+    "category": "imaging",
+    "priceRange": "8000 - 20000",
+    "reportTime": "24 - 48 hours",
+    "labs": "11 centers",
+    "description": "A radiation-free scan using magnetic fields and radio waves to visualize soft tissues, the brain, spine, and joints.",
+    "sampleType": "Depends",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 20000, "reportTime": "36 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 18000, "reportTime": "36 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 12000, "reportTime": "24 hours", "location": "K.B. Fazlul Kader Rd", "isBest": false },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 10000, "reportTime": "24 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 13000, "reportTime": "36 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 11000, "reportTime": "36 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 12000, "reportTime": "36 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 8000, "reportTime": "24 hours", "location": "GEC Circle", "isBest": true },
+      { "center": "Epic Health Care Ltd.", "price": 11000, "reportTime": "36 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 12000, "reportTime": "36 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 11000, "reportTime": "36 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 35,
+    "name": "Mammography (Breast Imaging)",
+    "category": "imaging",
+    "priceRange": "1500 - 4000",
+    "reportTime": "6 - 12 hours",
+    "labs": "11 centers",
+    "description": "A specialized low-dose X-ray used to detect breast abnormalities, lumps, or early signs of cancer.",
+    "sampleType": "Depends",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 4000, "reportTime": "10 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 3800, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 2500, "reportTime": "8 hours", "location": "K.B. Fazlul Kader Rd", "isBest": false },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 2200, "reportTime": "8 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 2600, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 2400, "reportTime": "10 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 2500, "reportTime": "10 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 1500, "reportTime": "8 hours", "location": "GEC Circle", "isBest": true },
+      { "center": "Epic Health Care Ltd.", "price": 2400, "reportTime": "10 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 2500, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 2400, "reportTime": "10 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 36,
+    "name": "Bone Mineral Density Scan (BMD / DEXA Scan)",
+    "category": "imaging",
+    "priceRange": "1500 - 3000",
+    "reportTime": "6 - 12 hours",
+    "labs": "11 centers",
+    "description": "A scan measuring bone density to diagnose osteoporosis or bone weakness.",
+    "sampleType": "Depends",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 3000, "reportTime": "10 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 2800, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 2200, "reportTime": "8 hours", "location": "K.B. Fazlul Kader Rd", "isBest": false },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 2000, "reportTime": "8 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 2300, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 2100, "reportTime": "10 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 2200, "reportTime": "10 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 1500, "reportTime": "8 hours", "location": "GEC Circle", "isBest": true },
+      { "center": "Epic Health Care Ltd.", "price": 2100, "reportTime": "10 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 2200, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 2100, "reportTime": "10 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 37,
+    "name": "Doppler / Colour-Doppler / Vascular Ultrasound / Duplex",
+    "category": "imaging",
+    "priceRange": "1500 - 3500",
+    "reportTime": "4 - 8 hours",
+    "labs": "11 centers",
+    "description": "An ultrasound technique that visualizes blood flow through vessels to detect blockages or vascular disorders.",
+    "sampleType": "Depends",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 3500, "reportTime": "6 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 3300, "reportTime": "6 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 2500, "reportTime": "6 hours", "location": "K.B. Fazlul Kader Rd", "isBest": false },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 2300, "reportTime": "6 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 2600, "reportTime": "6 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 2400, "reportTime": "6 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 2500, "reportTime": "6 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 1500, "reportTime": "4 hours", "location": "GEC Circle", "isBest": true },
+      { "center": "Epic Health Care Ltd.", "price": 2400, "reportTime": "6 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 2500, "reportTime": "6 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 2400, "reportTime": "6 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 38,
+    "name": "Fluoroscopy (Real-time X-ray Imaging)",
+    "category": "imaging",
+    "priceRange": "1500 - 4000",
+    "reportTime": "6 - 24 hours",
+    "labs": "11 centers",
+    "description": "A real-time imaging technique using X-rays to observe movement inside the body, often with contrast dye.",
+    "sampleType": "Depends",
+    "fasting": "Depends",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 4000, "reportTime": "12 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 3800, "reportTime": "12 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 2500, "reportTime": "10 hours", "location": "K.B. Fazlul Kader Rd", "isBest": false },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 2200, "reportTime": "10 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 2600, "reportTime": "12 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 2400, "reportTime": "12 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 2500, "reportTime": "12 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 1500, "reportTime": "6 hours", "location": "GEC Circle", "isBest": true },
+      { "center": "Epic Health Care Ltd.", "price": 2400, "reportTime": "12 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 2500, "reportTime": "12 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 2400, "reportTime": "12 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 39,
+    "name": "Angiography / MR Angiography / Vascular Imaging",
+    "category": "imaging",
+    "priceRange": "15000 - 50000",
+    "reportTime": "24 - 72 hours",
+    "labs": "11 centers",
+    "description": "Imaging of blood vessels using contrast dye and X-ray, CT, or MRI to detect blockages, aneurysms, or vascular disease.",
+    "sampleType": "Depends",
+    "fasting": "Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 50000, "reportTime": "48 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 48000, "reportTime": "48 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 35000, "reportTime": "36 hours", "location": "K.B. Fazlul Kader Rd", "isBest": false },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 30000, "reportTime": "36 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 36000, "reportTime": "48 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 32000, "reportTime": "48 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 35000, "reportTime": "48 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 15000, "reportTime": "24 hours", "location": "GEC Circle", "isBest": true },
+      { "center": "Epic Health Care Ltd.", "price": 32000, "reportTime": "48 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 35000, "reportTime": "48 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 32000, "reportTime": "48 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 40,
+    "name": "Nuclear Medicine / Functional Imaging (PET / SPECT / Bone Scan)",
+    "category": "imaging",
+    "priceRange": "25000 - 80000",
+    "reportTime": "24 - 72 hours",
+    "labs": "11 centers",
+    "description": "Advanced imaging using radioactive tracers to evaluate organ function, detect cancer, and assess metabolic activity.",
+    "sampleType": "Depends",
+    "fasting": "Depends",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 80000, "reportTime": "48 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 75000, "reportTime": "48 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 55000, "reportTime": "48 hours", "location": "K.B. Fazlul Kader Rd", "isBest": false },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 50000, "reportTime": "48 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 58000, "reportTime": "48 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 52000, "reportTime": "48 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 55000, "reportTime": "48 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 25000, "reportTime": "24 hours", "location": "GEC Circle", "isBest": true },
+      { "center": "Epic Health Care Ltd.", "price": 52000, "reportTime": "48 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 55000, "reportTime": "48 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 52000, "reportTime": "48 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 41,
+    "name": "Oral Glucose Tolerance Test (OGTT / 2-hour OGTT)",
+    "category": "blood",
+    "priceRange": "350 - 700",
+    "reportTime": "4-8 hours",
+    "labs": "11 centers",
+    "description": "Measures the body's ability to process glucose after a glucose load. Used to diagnose diabetes and prediabetes.",
+    "sampleType": "Blood",
+    "fasting": "Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 650, "reportTime": "6 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 550, "reportTime": "6 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 450, "reportTime": "4 hours", "location": "K.B. Fazlul Kader Rd", "isBest": false },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 500, "reportTime": "5 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 480, "reportTime": "5 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 400, "reportTime": "6 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 420, "reportTime": "6 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 380, "reportTime": "5 hours", "location": "GEC Circle", "isBest": true },
+      { "center": "Epic Health Care Ltd.", "price": 450, "reportTime": "6 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 500, "reportTime": "5 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 430, "reportTime": "5 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+
+  {
+    "id": 42,
+    "name": "Post-Prandial Blood Sugar (PPBS / 2-hour After Meal)",
+    "category": "blood",
+    "priceRange": "200 - 450",
+    "reportTime": "2-4 hours",
+    "labs": "11 centers",
+    "description": "Measures blood glucose levels two hours after eating to evaluate how the body responds to sugar intake.",
+    "sampleType": "Blood",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 400, "reportTime": "3 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 300, "reportTime": "3 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 250, "reportTime": "2 hours", "location": "K.B. Fazlul Kader Rd", "isBest": false },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 280, "reportTime": "2 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 260, "reportTime": "2 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 230, "reportTime": "3 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 240, "reportTime": "3 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 200, "reportTime": "2 hours", "location": "GEC Circle", "isBest": true },
+      { "center": "Epic Health Care Ltd.", "price": 260, "reportTime": "3 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 280, "reportTime": "2 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 240, "reportTime": "2 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+
+  {
+    "id": 43,
+    "name": "Serum Insulin Level (Fasting / Post-meal)",
+    "category": "hormone",
+    "priceRange": "900 - 1800",
+    "reportTime": "24 hours",
+    "labs": "11 centers",
+    "description": "Measures insulin concentration to assess pancreatic function and insulin resistance.",
+    "sampleType": "Blood",
+    "fasting": "Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 1700, "reportTime": "24 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 1500, "reportTime": "24 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 1400, "reportTime": "24 hours", "location": "K.B. Fazlul Kader Rd", "isBest": false },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 1300, "reportTime": "24 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 1250, "reportTime": "24 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 1100, "reportTime": "24 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 1150, "reportTime": "24 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 900, "reportTime": "24 hours", "location": "GEC Circle", "isBest": true },
+      { "center": "Epic Health Care Ltd.", "price": 1200, "reportTime": "24 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 1300, "reportTime": "24 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 1150, "reportTime": "24 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+
+  {
+    "id": 44,
+    "name": "Urine Sugar (Urine Glucose) Test",
+    "category": "urine",
+    "priceRange": "100 - 250",
+    "reportTime": "1-2 hours",
+    "labs": "11 centers",
+    "description": "Detects the presence of glucose in urine, often used as a basic diabetes screening tool.",
+    "sampleType": "Urine",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 200, "reportTime": "1 hour", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 180, "reportTime": "1 hour", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 150, "reportTime": "1 hour", "location": "K.B. Fazlul Kader Rd", "isBest": false },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 160, "reportTime": "1 hour", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 150, "reportTime": "1 hour", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 130, "reportTime": "2 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 140, "reportTime": "1 hour", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 100, "reportTime": "1 hour", "location": "GEC Circle", "isBest": true },
+      { "center": "Epic Health Care Ltd.", "price": 150, "reportTime": "1 hour", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 170, "reportTime": "1 hour", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 140, "reportTime": "1 hour", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+  {
+    "id": 45,
+    "name": "Skin Prick Test (SPT)",
+    "category": "allergy",
+    "priceRange": "1500 - 3500",
+    "reportTime": "1-2 hours",
+    "labs": "11 centers",
+    "description": "Detects immediate allergic reactions to common allergens by pricking the skin.",
+    "sampleType": "Depends",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 3200, "reportTime": "2 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 3000, "reportTime": "2 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 1800, "reportTime": "2 hours", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 2500, "reportTime": "2 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 2600, "reportTime": "2 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 2800, "reportTime": "3 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 3000, "reportTime": "3 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 2000, "reportTime": "2 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 2400, "reportTime": "2 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 2600, "reportTime": "3 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 2700, "reportTime": "3 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+
+  {
+    "id": 46,
+    "name": "Intradermal Allergy Test",
+    "category": "allergy",
+    "priceRange": "2000 - 5000",
+    "reportTime": "2-4 hours",
+    "labs": "11 centers",
+    "description": "A deeper skin test used to detect more sensitive allergic reactions when SPT is inconclusive.",
+    "sampleType": "Depends",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 4800, "reportTime": "4 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 4500, "reportTime": "3 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 2500, "reportTime": "3 hours", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 3500, "reportTime": "3 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 3600, "reportTime": "4 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 3800, "reportTime": "4 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 4000, "reportTime": "4 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 3000, "reportTime": "3 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 3200, "reportTime": "3 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 3400, "reportTime": "4 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 3600, "reportTime": "4 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+
+  {
+    "id": 47,
+    "name": "Specific IgE Blood Test (RAST/ImmunoCAP)",
+    "category": "allergy",
+    "priceRange": "1200 - 4000",
+    "reportTime": "1-2 days",
+    "labs": "11 centers",
+    "description": "Measures allergen-specific IgE antibodies in blood to identify triggers such as foods or environmental allergens.",
+    "sampleType": "Blood",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 3500, "reportTime": "1 day", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 2500, "reportTime": "1 day", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 1400, "reportTime": "1 day", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 2000, "reportTime": "2 days", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 2200, "reportTime": "2 days", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 2600, "reportTime": "2 days", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 2800, "reportTime": "2 days", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 1600, "reportTime": "1 day", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 1800, "reportTime": "1 day", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 2000, "reportTime": "1 day", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 2200, "reportTime": "1 day", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+
+  {
+    "id": 48,
+    "name": "Total IgE Blood Test",
+    "category": "allergy",
+    "priceRange": "500 - 1500",
+    "reportTime": "4-6 hours",
+    "labs": "11 centers",
+    "description": "Measures the total level of IgE antibodies in the blood to assess overall allergy tendency.",
+    "sampleType": "Blood",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 1200, "reportTime": "6 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 900, "reportTime": "5 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 550, "reportTime": "4 hours", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 800, "reportTime": "5 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 850, "reportTime": "5 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 900, "reportTime": "6 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 950, "reportTime": "6 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 600, "reportTime": "4 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 700, "reportTime": "5 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 800, "reportTime": "5 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 850, "reportTime": "5 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+
+  {
+    "id": 49,
+    "name": "Patch Test (Contact Dermatitis Test)",
+    "category": "allergy",
+    "priceRange": "1500 - 3500",
+    "reportTime": "48-72 hours",
+    "labs": "11 centers",
+    "description": "Checks delayed skin reactions to allergens by applying patches on the back.",
+    "sampleType": "Depends",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 3200, "reportTime": "72 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 2800, "reportTime": "72 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 1600, "reportTime": "48 hours", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 2200, "reportTime": "72 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 2400, "reportTime": "72 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 2600, "reportTime": "72 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 2800, "reportTime": "72 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 1800, "reportTime": "48 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 2000, "reportTime": "48 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 2200, "reportTime": "72 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 2400, "reportTime": "72 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+
+  {
+    "id": 50,
+    "name": "Food Elimination Diet Test",
+    "category": "allergy",
+    "priceRange": "Free - 2000",
+    "reportTime": "Varies",
+    "labs": "11 centers",
+    "description": "A guided nutritional protocol to identify food sensitivities by eliminating and reintroducing foods.",
+    "sampleType": "Depends",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 1800, "reportTime": "Consultation", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 1500, "reportTime": "Consultation", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 500, "reportTime": "Consultation", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 900, "reportTime": "Consultation", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 1000, "reportTime": "Consultation", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 1200, "reportTime": "Consultation", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 1500, "reportTime": "Consultation", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 700, "reportTime": "Consultation", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 900, "reportTime": "Consultation", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 1000, "reportTime": "Consultation", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 1100, "reportTime": "Consultation", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+
+  {
+    "id": 51,
+    "name": "Oral Food Challenge",
+    "category": "allergy",
+    "priceRange": "3000 - 8000",
+    "reportTime": "3-5 hours",
+    "labs": "11 centers",
+    "description": "A supervised test where the patient eats small amounts of suspected allergen food to confirm allergy.",
+    "sampleType": "Depends",
+    "fasting": "Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 7500, "reportTime": "5 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 6500, "reportTime": "5 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 3500, "reportTime": "4 hours", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 5000, "reportTime": "5 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 5200, "reportTime": "5 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 6000, "reportTime": "5 hours", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 6200, "reportTime": "5 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 3800, "reportTime": "4 hours", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 4500, "reportTime": "4 hours", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 4800, "reportTime": "4 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 5000, "reportTime": "4 hours", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+
+  {
+    "id": 52,
+    "name": "Spirometry with Bronchoprovocation (for respiratory allergies)",
+    "category": "allergy",
+    "priceRange": "1000 - 3500",
+    "reportTime": "1-2 hours",
+    "labs": "11 centers",
+    "description": "Measures lung function and airway responsiveness to diagnose asthma triggered by allergies.",
+    "sampleType": "Depends",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 3000, "reportTime": "2 hours", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 2500, "reportTime": "2 hours", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 1200, "reportTime": "1 hour", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 1800, "reportTime": "1 hour", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 2000, "reportTime": "1 hour", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 2200, "reportTime": "1 hour", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 2500, "reportTime": "1 hour", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 1500, "reportTime": "1 hour", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 1600, "reportTime": "1 hour", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 1800, "reportTime": "1 hour", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 2000, "reportTime": "1 hour", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+
+  {
+    "id": 53,
+    "name": "Allergen Component-Resolved Diagnostics",
+    "category": "allergy",
+    "priceRange": "3000 - 9000",
+    "reportTime": "3-5 days",
+    "labs": "11 centers",
+    "description": "Advanced molecular test that measures specific allergen protein components for accurate allergy diagnosis.",
+    "sampleType": "Blood",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 8500, "reportTime": "5 days", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 7000, "reportTime": "4 days", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 3500, "reportTime": "3 days", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 5000, "reportTime": "4 days", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 5500, "reportTime": "4 days", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 6000, "reportTime": "5 days", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 6200, "reportTime": "5 days", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 3800, "reportTime": "3 days", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 4500, "reportTime": "3 days", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 4800, "reportTime": "4 days", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 5000, "reportTime": "4 days", "location": "Katalgonj", "isBest": false }
+    ]
+  },
+
+  {
+    "id": 54,
+    "name": "Latex Sensitivity Test",
+    "category": "allergy",
+    "priceRange": "1000 - 3000",
+    "reportTime": "1 day",
+    "labs": "11 centers",
+    "description": "Detects sensitivity to latex proteins using blood or skin tests.",
+    "sampleType": "Blood",
+    "fasting": "Not Required",
+    "lastUpdated": "10 Dec 2025",
+    "prices": [
+      { "center": "Evercare Hospital Diagnostic", "price": 2800, "reportTime": "1 day", "location": "Oxygen-Kuwaish Rd", "isBest": false },
+      { "center": "LABAID Specialized Hospital Chattogram", "price": 2400, "reportTime": "1 day", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Popular Diagnostic Center", "price": 1200, "reportTime": "1 day", "location": "K.B. Fazlul Kader Rd", "isBest": true },
+      { "center": "Chevron Clinical Laboratory (Pvt.) Ltd.", "price": 1500, "reportTime": "1 day", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "CSCR Diagnostic & Hospital", "price": 1600, "reportTime": "1 day", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Max Hospital Chittagong", "price": 1800, "reportTime": "1 day", "location": "Mehedibag", "isBest": false },
+      { "center": "Parkview Hospital", "price": 2000, "reportTime": "1 day", "location": "Panchlaish", "isBest": false },
+      { "center": "Chattogram Metropolitan Diagnostic Center", "price": 1300, "reportTime": "1 day", "location": "GEC Circle", "isBest": false },
+      { "center": "Epic Health Care Ltd.", "price": 1400, "reportTime": "1 day", "location": "Panchlaish", "isBest": false },
+      { "center": "Medical Centre (Pvt.) Ltd.", "price": 1500, "reportTime": "1 day", "location": "O.R. Nizam Rd", "isBest": false },
+      { "center": "Ibn Sina Diagnostic & Consultation Center", "price": 1600, "reportTime": "1 day", "location": "Katalgonj", "isBest": false }
+    ]
+  }
+];
+
+
+
+        // DOM Elements
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        const homeSearchBtn = document.getElementById('homeSearchBtn');
+        const homeSearchInput = document.getElementById('homeSearchInput');
+        const testSearchBtn = document.getElementById('testSearchBtn');
+        const testSearchInput = document.getElementById('testSearchInput');
+        const centerSearchBtn = document.getElementById('centerSearchBtn');
+        const centerSearchInput = document.getElementById('centerSearchInput');
+        const applyFiltersBtn = document.getElementById('applyFilters');
+        const categoryFilter = document.getElementById('categoryFilter');
+        const minPrice = document.getElementById('minPrice');
+        const maxPrice = document.getElementById('maxPrice');
+        const homeTestCards = document.querySelector('#homePage .test-cards');
+        const testPageTestCards = document.querySelector('#testsPage .test-cards');
+        const homeCenterCards = document.querySelector('#homePage .center-cards');
+        const centerCardsContainer = document.querySelector('#centersPage .center-cards');
+        const categoryCards = document.querySelectorAll('.category-card');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const footerNavLinks = document.querySelectorAll('.footer-nav');
+        const pages = document.querySelectorAll('.page');
+        const homeLink = document.getElementById('homeLink');
+        const ctaButton = document.getElementById('ctaButton');
+        const backToResults = document.getElementById('backToResults');
+        const comparisonSearch = document.getElementById('comparisonSearch');
+        const comparisonSearchBtn = document.getElementById('comparisonSearchBtn');
+        const testInfoGrid = document.getElementById('testInfoGrid');
+        const comparisonTableBody = document.getElementById('comparisonTableBody');
+        const testDetailsSections = document.getElementById('testDetailsSections');
+
+        // Mobile menu toggle
+        mobileMenuBtn.addEventListener('click', function() {
+            mainNav.classList.toggle('active');
+        });
+
+        // Navigation functionality
+        function showPage(pageId) {
+            // Hide all pages
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show the selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update active nav link
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-page') === pageId) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Close mobile menu if open
+            mainNav.classList.remove('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Set up navigation links
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const pageId = this.getAttribute('data-page');
+                showPage(pageId);
+            });
+        });
+
+        // Set up footer navigation links
+        footerNavLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const pageId = this.getAttribute('data-page');
+                showPage(pageId);
+            });
+        });
+
+        // Set up home link
+        homeLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            showPage('homePage');
+        });
+
+        // Set up CTA button
+        ctaButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            showPage('testsPage');
+        });
+
+        // Set up quick action buttons
+        document.getElementById('testPricesBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            showPage('testsPage');
+        });
+
+        document.getElementById('topCentersBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            showPage('centersPage');
+        });
+
+        document.getElementById('categoriesBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            showPage('categoriesPage');
+        });
+
+        document.getElementById('aboutBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            showPage('aboutPage');
+        });
+
+        // Set up category cards
+        categoryCards.forEach(card => {
+            card.addEventListener('click', function(e) {
+                e.preventDefault();
+                const category = this.getAttribute('data-category');
+                showPage('testsPage');
+                // Set the category filter
+                setTimeout(() => {
+                    categoryFilter.value = category;
+                    filterTests();
+                }, 100);
+            });
+        });
+
+        // Render tests to the page
+        function renderTests(container, tests) {
+            container.innerHTML = '';
+            
+            if (tests.length === 0) {
+                container.innerHTML = '<p style="text-align: center; width: 100%; padding: 40px; color: var(--text-gray);">No tests found matching your criteria.</p>';
+                return;
+            }
+            
+            tests.forEach(test => {
+                const testCard = document.createElement('div');
+                testCard.className = 'test-card';
+                testCard.innerHTML = `
+                    <div class="test-card-header">
+                        <h3>${test.name}</h3>
+                        <div class="test-category">${getCategoryName(test.category)}</div>
+                    </div>
+                    <div class="test-card-body">
+                        <div class="test-info">
+                            <div class="test-price">৳ ${test.priceRange}</div>
+                            <div class="test-report-time">${test.reportTime}</div>
+                        </div>
+                        <div class="test-labs">${test.labs}</div>
+                        <p>${test.description}</p>
+                    </div>
+                    <div class="test-card-footer">
+                        <a href="#" class="view-details" data-test-id="${test.id}">
+                            View Details <i class="fas fa-chevron-right"></i>
+                        </a>
+                        <div class="last-updated">Updated: ${test.lastUpdated}</div>
+                    </div>
+                `;
+                container.appendChild(testCard);
+            });
+
+            // Add event listeners to view details buttons
+            container.querySelectorAll('.view-details').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const testId = parseInt(this.getAttribute('data-test-id'));
+                    loadPriceComparison(testId);
+                    showPage('priceComparisonPage');
+                });
+            });
+        }
+
+        // Render centers to the page
+        function renderCenters(container, centers) {
+            container.innerHTML = '';
+            
+            if (centers.length === 0) {
+                container.innerHTML = '<p style="text-align: center; width: 100%; padding: 40px; color: var(--text-gray);">No diagnostic centers found matching your criteria.</p>';
+                return;
+            }
+            
+            centers.forEach(center => {
+                const centerCard = document.createElement('div');
+                centerCard.className = 'center-card';
+                centerCard.innerHTML = `
+                    <div class="center-card-header">
+                        <div class="center-icon">
+                            <i class="fas fa-hospital"></i>
+                        </div>
+                        <h3>${center.name}</h3>
+                    </div>
+                    <div class="center-card-body">
+                        <div class="center-info">
+                            <div class="center-info-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>${center.location}</span>
+                            </div>
+                            <div class="center-info-item">
+                                <i class="fas fa-phone"></i>
+                                <span>${center.phone}</span>
+                            </div>
+                            <div class="center-info-item">
+                                <i class="fas fa-clock"></i>
+                                <span>${center.hours}</span>
+                            </div>
+                        </div>
+                        <p>${center.description}</p>
+                    </div>
+                    <div class="center-card-footer">
+                        <a href="index.html" class="view-details">
+                            Back to home <i class="fas fa-chevron-right"></i>
+                        </a>
+                        <div class="last-updated">Updated: ${center.lastUpdated || "Recently"}</div>
+                    </div>
+                `;
+                container.appendChild(centerCard);
+            });
+        }
+
+        // Filter tests based on search and filters
+        function filterTests() {
+            const searchTerm = testSearchInput.value.trim().toLowerCase();
+            const category = categoryFilter.value;
+            const min = minPrice.value ? parseInt(minPrice.value) : 0;
+            const max = maxPrice.value ? parseInt(maxPrice.value) : Infinity;
+            
+            const filteredTests = testData.filter(test => {
+                // Search term filter
+                const matchesSearch = !searchTerm || 
+                    test.name.toLowerCase().includes(searchTerm) ||
+                    test.description.toLowerCase().includes(searchTerm);
+                
+                // Category filter
+                const matchesCategory = !category || test.category === category;
+                
+                // Price filter (extract min price from range)
+                const testMinPrice = parseInt(test.priceRange.split(' - ')[0]);
+                const matchesPrice = testMinPrice >= min && testMinPrice <= max;
+                
+                return matchesSearch && matchesCategory && matchesPrice;
+            });
+            
+            renderTests(testPageTestCards, filteredTests);
+        }
+
+        // Filter centers based on search
+        function filterCenters() {
+            const searchTerm = centerSearchInput.value.trim().toLowerCase();
+            
+            const filteredCenters = centerData.filter(center => {
+                return !searchTerm || 
+                    center.name.toLowerCase().includes(searchTerm) ||
+                    center.location.toLowerCase().includes(searchTerm) ||
+                    center.description.toLowerCase().includes(searchTerm);
+            });
+            
+            renderCenters(centerCardsContainer, filteredCenters);
+        }
+
+        // Function to load price comparison for a specific test
+        function loadPriceComparison(testId) {
+            const test = testData.find(t => t.id === testId);
+            if (!test) return;
+
+            // Update page title and basic info
+            document.querySelector('#priceComparisonPage h1').textContent = test.name;
+            
+            // Update basic info grid
+            testInfoGrid.innerHTML = `
+                <div class="info-item">
+                    <span class="info-label">Test Category</span>
+                    <span class="info-value">${getCategoryName(test.category)}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Sample Type</span>
+                    <span class="info-value">${test.sampleType}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Fasting Required</span>
+                    <span class="info-value">${test.fasting}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Report Time</span>
+                    <span class="info-value">${test.reportTime}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Price Range</span>
+                    <span class="info-value">৳ ${Math.min(...test.prices.map(p => p.price))} - ৳ ${Math.max(...test.prices.map(p => p.price))}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Last Updated</span>
+                    <span class="info-value">${test.lastUpdated}</span>
+                </div>
+            `;
+
+            // Update comparison table
+            comparisonTableBody.innerHTML = '';
+            
+            test.prices.forEach(price => {
+                const row = document.createElement('tr');
+                if (price.isBest) {
+                    row.classList.add('best-price');
+                }
+                
+                row.innerHTML = `
+                    <td>
+                        <div class="center-name">
+                            <div class="center-logo-small">
+                                <i class="fas fa-hospital"></i>
+                            </div>
+                            <div>
+                                <strong>${price.center}</strong>
+                                <div style="font-size: 0.8rem; color: var(--text-gray);">${price.location}</div>
+                            </div>
+                        </div>
+                        ${price.isBest ? '<div class="best-price-tag">Best Price</div>' : ''}
+                    </td>
+                    <td class="price-cell">৳ ${price.price}</td>
+                    <td>${price.reportTime}</td>
+                    <td>${price.location}, Chittagong</td>
+                    <td class="action-cell">
+                        <a href="index.html" class="view-center-btn">Back to home</a>
+                    </td>
+                `;
+                centersPage
+                comparisonTableBody.appendChild(row);
+            });
+
+            // Update test image based on category
+            const testImage = document.querySelector('.test-image');
+            const icon = getCategoryIcon(test.category);
+            testImage.innerHTML = `<i class="fas ${icon}"></i>`;
+
+            // Update test details sections
+           
+        }
+
+        // Helper function to get category name
+        function getCategoryName(category) {
+            const categories = {
+                blood: 'Blood Test',
+                hormone: 'Hormone Test',
+                diabetes: 'Diabetes Test',
+                imaging: 'Imaging',
+                urine: 'Urine Test',
+                viral: 'Viral Screening'
+            };
+            return categories[category] || 'Test';
+        }
+
+        // Helper function to get category icon
+        function getCategoryIcon(category) {
+            const icons = {
+                blood: 'fa-tint',
+                hormone: 'fa-chart-line',
+                diabetes: 'fa-syringe',
+                imaging: 'fa-x-ray',
+                urine: 'fa-flask',
+                viral: 'fa-virus'
+            };
+            return icons[category] || 'fa-vial';
+        }
+
+        // Search functionality
+        homeSearchBtn.addEventListener('click', performSearch);
+        homeSearchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') performSearch();
+        });
+
+        testSearchBtn.addEventListener('click', performTestSearch);
+        testSearchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') performTestSearch();
+        });
+
+        centerSearchBtn.addEventListener('click', performCenterSearch);
+        centerSearchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') performCenterSearch();
+        });
+
+        function performSearch() {
+            const searchTerm = homeSearchInput.value.trim().toLowerCase();
+            if (searchTerm) {
+                // Check if it matches any test
+                const matchingTest = testData.find(test => 
+                    test.name.toLowerCase().includes(searchTerm)
+                );
+                
+                // Check if it matches any center
+                const matchingCenter = centerData.find(center => 
+                    center.name.toLowerCase().includes(searchTerm)
+                );
+                
+                if (matchingTest) {
+                    showPage('testsPage');
+                    // Highlight the matching test
+                    setTimeout(() => {
+                        testSearchInput.value = searchTerm;
+                        filterTests();
+                    }, 100);
+                } else if (matchingCenter) {
+                    showPage('centersPage');
+                    // Highlight the matching center
+                    setTimeout(() => {
+                        centerSearchInput.value = searchTerm;
+                        filterCenters();
+                    }, 100);
+                } else {
+                    // If no direct match, go to tests page with search
+                    showPage('testsPage');
+                    setTimeout(() => {
+                        testSearchInput.value = searchTerm;
+                        filterTests();
+                    }, 100);
+                }
+            }
+        }
+
+        function performTestSearch() {
+            const searchTerm = testSearchInput.value.trim().toLowerCase();
+            if (searchTerm) {
+                filterTests();
+            }
+        }
+
+        function performCenterSearch() {
+            const searchTerm = centerSearchInput.value.trim().toLowerCase();
+            if (searchTerm) {
+                filterCenters();
+            }
+        }
+
+        // Comparison search
+        comparisonSearchBtn.addEventListener('click', function() {
+            const searchTerm = comparisonSearch.value.trim().toLowerCase();
+            if (searchTerm) {
+                // Find matching test
+                const matchingTest = testData.find(test => 
+                    test.name.toLowerCase().includes(searchTerm)
+                );
+                
+                if (matchingTest) {
+                    loadPriceComparison(matchingTest.id);
+                } else {
+                    alert('No test found matching your search. Please try another test name.');
+                }
+            }
+        });
+
+        comparisonSearch.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                comparisonSearchBtn.click();
+            }
+        });
+
+        // Back to results button
+        backToResults.addEventListener('click', function(e) {
+            e.preventDefault();
+            showPage('testsPage');
+        });
+
+        // Initialize pages with data
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show home page by default
+            showPage('homePage');
+            
+            // Render initial test and center data
+            renderTests(homeTestCards, testData.slice(0, 3));
+            renderTests(testPageTestCards, testData);
+            renderCenters(homeCenterCards, centerData.slice(0, 3)); // Only show 3 centers on home page
+            renderCenters(centerCardsContainer, centerData); // Show all centers on centers page
+            
+            // Set up filter button
+            applyFiltersBtn.addEventListener('click', filterTests);
+            
+            // Load default comparison (CBC)
+            loadPriceComparison(1);
+        });
+    </script>
+</body>
+</html>
