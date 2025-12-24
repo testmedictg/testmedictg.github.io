@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://testmedictg.github.io/sitemap.txt
