@@ -3757,34 +3757,52 @@ const testData = [
             const searchTerm = searchInputElement ? searchInputElement.value.trim().toLowerCase() : '';
             const category = categoryFilter ? categoryFilter.value : '';
             
-            // Handle price filters - only apply if values are entered
-            let min = 0;
-            let max = Infinity;
+            // Handle price filters - only apply if values are entered and valid
+            let min = null; // Use null to indicate "not set"
+            let max = null;
             if (minPrice && minPrice.value && minPrice.value.trim() !== '') {
-                min = parseInt(minPrice.value) || 0;
+                const minValue = parseInt(minPrice.value);
+                if (!isNaN(minValue) && minValue >= 0) {
+                    min = minValue;
+                }
             }
             if (maxPrice && maxPrice.value && maxPrice.value.trim() !== '') {
-                max = parseInt(maxPrice.value) || Infinity;
+                const maxValue = parseInt(maxPrice.value);
+                if (!isNaN(maxValue) && maxValue > 0) {
+                    max = maxValue;
+                }
+            }
+            
+            // If everything is empty, show all tests
+            const hasSearchTerm = searchTerm && searchTerm.length > 0;
+            const hasCategory = category && category.length > 0;
+            const hasPriceFilter = min !== null || max !== null;
+            
+            if (!hasSearchTerm && !hasCategory && !hasPriceFilter) {
+                // Show all tests when everything is empty
+                renderTests(testPageTestCards, testData);
+                return;
             }
             
             const filteredTests = testData.filter(test => {
                 // Search term filter - case-insensitive comparison
                 // If search term is empty, show all tests (unless other filters are active)
-                const matchesSearch = !searchTerm || 
+                const matchesSearch = !hasSearchTerm || 
                     test.name.toLowerCase().includes(searchTerm) ||
                     test.description.toLowerCase().includes(searchTerm);
                 
                 // Category filter - if no category selected, show all
-                const matchesCategory = !category || test.category === category;
+                const matchesCategory = !hasCategory || test.category === category;
                 
-                // Price filter (extract min price from range)
-                // Only apply price filter if min or max is set
+                // Price filter - only apply if price filter is set
                 let matchesPrice = true;
-                if (min > 0 || max < Infinity) {
+                if (hasPriceFilter) {
                     const priceRange = test.priceRange.split(' - ');
                     const testMinPrice = parseInt(priceRange[0]) || 0;
                     // Check if test price range overlaps with filter range
-                    matchesPrice = testMinPrice >= min && testMinPrice <= max;
+                    const minCheck = min === null || testMinPrice >= min;
+                    const maxCheck = max === null || testMinPrice <= max;
+                    matchesPrice = minCheck && maxCheck;
                 }
                 
                 return matchesSearch && matchesCategory && matchesPrice;
@@ -3803,10 +3821,15 @@ const testData = [
             // Convert to lowercase for case-insensitive comparison
             const searchTerm = centerSearchInput.value.trim().toLowerCase();
             
+            // If search is empty, show all centers
+            if (!searchTerm || searchTerm.length === 0) {
+                renderCenters(centerCardsContainer, centerData);
+                return;
+            }
+            
             const filteredCenters = centerData.filter(center => {
                 // All comparisons are case-insensitive
-                return !searchTerm || 
-                    center.name.toLowerCase().includes(searchTerm) ||
+                return center.name.toLowerCase().includes(searchTerm) ||
                     center.location.toLowerCase().includes(searchTerm) ||
                     center.description.toLowerCase().includes(searchTerm);
             });
@@ -4271,10 +4294,8 @@ const testData = [
         }
 
         function performCenterSearch() {
-            const searchTerm = centerSearchInput.value.trim().toLowerCase();
-            if (searchTerm) {
-                filterCenters();
-            }
+            // Always call filterCenters() - it handles empty search by showing all centers
+            filterCenters();
         }
 
         // Comparison search - case-insensitive
